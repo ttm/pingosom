@@ -31,7 +31,7 @@ def v(f=220,d=2.,tab=S_i,fv=2.,nu=2.,tabv=S_i):
     ii=n.arange(Lambda)
     Lv=float(len(tabv))
 
-    Gammav_i=n.floor(ii*fv*Lv/f_a) # índices para a LUT
+    Gammav_i=n.floor((ii*fv*Lv)/f_a) # índices para a LUT
     Gammav_i=n.array(Gammav_i,n.int)
     # padrão de variação do vibrato para cada amostra
     Tv_i=tabv[Gammav_i%int(Lv)] 
@@ -56,8 +56,6 @@ def A(fa=2.,V_dB=10.,d=2.,taba=S_i):
     A_i=taba[Gammaa_i%int(Lt)] 
     A_i=1+A_i*(1- 10.**(V_dB/20.))
     return A_i
-
-
 
 def adsr(som,A=10.,D=20.,S=-20.,R=100.,xi=1e-2):
     """Envelope ADSR com
@@ -464,6 +462,919 @@ w.write('masturba7c.wav',  f_a, N(adsr(ra ,A=5.,D=5.,R=10.,S=-5.)*A(d=len(r_)/f_
 w.write('masturba7d.wav',  f_a, N(adsr(rv ,A=5.,D=5.,R=10.,S=-5.)*A(d=len(r_)/f_a,fa=5,V_dB=50.)))
 
 
+w.write('mosquito.wav',  f_a, N(adsr(v(f=440*4,tab=D_i,d=5.),A=500.,D=100.,R=700.,S=-5.)*A(d=5.,fa=1.5,V_dB=50.)))
+
+
+w.write('mosquito2.wav',  f_a, N(adsr(v(f=440*4,tab=D_i,d=5.,fv=.2),A=500.,D=100.,R=700.,S=-5.)*A(d=5.,fa=0.3,V_dB=5.)))
+
+
+w.write('mosquito3.wav',  f_a, N(adsr(v(f=440*7,tab=D_i,d=8.,fv=.2),A=500.,D=100.,R=700.,S=-5.)*A(d=8.,fa=0.3,V_dB=5.)))
+
+
+w.write('mosquito4.wav',  f_a, N(adsr(v(f=440*7,tab=Q_i,tabv=Tr_i,d=8.,fv=.2),A=500.,D=100.,R=700.,S=-5.)*A(d=8.,fa=0.3,V_dB=7.)))
+
+
+w.write('mosquito5.wav',  f_a, N(adsr(v(f=40,tab=Q_i,tabv=Tr_i,d=8.,fv=.2),A=500.,D=100.,R=700.,S=-5.)*A(d=8.,fa=0.3,V_dB=7.)))
+
+
+w.write('mosquito6.wav',  f_a, N(adsr(v(f=400,tab=D_i,tabv=Tr_i,d=8.,fv=.2),A=500.,D=100.,R=700.,S=-5.)*A(d=8.,fa=0.3,V_dB=7.)))
+
+
+w.write('mosquito7.wav',  f_a, N(adsr(v(f=400,tab=D_i,tabv=Tr_i,d=8.,fv=7.2),A=500.,D=100.,R=700.,S=-5.)*A(d=8.,fa=0.3,V_dB=7.)))
+
+
+w.write('mosquito8.wav',  f_a, N(adsr(v(f=400,tab=D_i,tabv=Tr_i,d=8.,fv=7.2,nu=.1),A=500.,D=100.,R=700.,S=-5.)*A(d=8.,fa=0.3,V_dB=7.)))
+
+w.write('mosquito9.wav',  f_a, N(adsr(v(f=220,tab=D_i,tabv=Tr_i,d=8.,fv=7.2,nu=.01),A=500.,D=100.,R=700.,S=-5.)*A(d=8.,fa=0.3,V_dB=7.)))
+
+
+w.write('mosquito91.wav',  f_a, N(adsr(v(f=110,tab=D_i,tabv=Tr_i,d=8.,fv=7.2,nu=.1),A=500.,D=100.,R=700.,S=-5.)*A(d=8.,fa=0.3,V_dB=7.)))
+
+w.write('mosquito92.wav',  f_a, N(adsr(v(f=110*10,tab=D_i,tabv=Tr_i,d=8.,fv=7.2,nu=.1),A=500.,D=100.,R=700.,S=-5.)*A(d=8.,fa=0.3,V_dB=7.)))
+
+
+w.write('mosquito93.wav',  f_a, N(adsr(v(f=110*10,tab=Q_i,tabv=Tr_i,d=8.,fv=7.2,nu=.1),A=500.,D=100.,R=700.,S=-5.)*A(d=8.,fa=0.3,V_dB=7.)))
+
+
+w.write('mosquito94.wav',  f_a, N(adsr(v(f=110.,tab=Q_i,tabv=Tr_i,d=8.,fv=7.20,nu=.1),A=500.,D=100.,R=700.,S=-5.)*A(d=8.,fa=0.3,V_dB=7.)))
+
+
+w.write('mosquito95.wav',  f_a, N(H((
+        adsr(v(f=110.,tab=Q_i,tabv=Tr_i,d=.3,fv=17.20,nu=1.1),A=50.,D=10.,R=70.,S=-5.)*A(d=.3,fa=0.3,V_dB=7.),
+        n.zeros(f_a*.5),
+        adsr(v(f=120.,tab=Q_i,tabv=Tr_i,d=8.,fv=27.20,nu=5.1),A=50.,D=10.,R=70.,S=-5.)*A(d=8.,fa=0.3,V_dB=7.),
+        n.zeros(f_a*.5),
+        adsr(v(f=100.,tab=Q_i,tabv=Tr_i,d=8.,fv=27.20,nu=2.1),A=50.,D=10.,R=70.,S=-5.)*A(d=8.,fa=0.3,V_dB=7.),
+        n.zeros(f_a*.5),
+))))
+
+
+w.write('chinelada.wav',  f_a, N(adsr(r__[:2*f_a],A=3.,R=1900.,S=-40)))
+
+
+w.write('telefone.wav',  f_a, N(adsr(v(880,nu=0.,tab=Tr_i),S=0)*A(taba=D_i,fa=12.,V_dB=20.)))
+
+#H_i = (n.random.random(100000.)*2-1)*n.e**(-n.arange(100000.)/1000.)
+#
+#### 2.43 Convolução
+#T2_i = n.convolve(H_i, H((adsr(v(880,nu=0.,tab=Tr_i),S=0)*A(taba=D_i,fa=12.,V_dB=20.),n.zeros(f_a))))
+#
+#w.write('telefone2.wav',  f_a, N(T2_i))
+
+###############
+# vogais, para grito e fala.
+# fazer espectro harmonico com
+# decaimento oscilatório
+# mudar fase, amplitude e comprimento de onda
+# para conseguir diferentes vogais
+ss=[]
+f0=220.
+s=n.zeros(4*f_a)
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-15.)/20.)
+    s+=v(f=ff,d=4.,nu=0.)
+ss.append(s)    
+w.write('grito.wav',  f_a, N(s))
+
+f0=220.
+s=n.zeros(4*f_a)
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-5.)/20.)
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)    
+w.write('grito2.wav',  f_a, N(s))
+
+s=n.zeros(4*f_a)
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-15.)/20.)
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)    
+w.write('grito3.wav',  f_a, N(s))
+
+s=n.zeros(4*f_a)
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-25.)/20.)
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)    
+w.write('grito4.wav',  f_a, N(s))
+
+
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*1 # uma volta
+aa=10.**(10/20.)
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-25.)/20.)+aa*i
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)   
+w.write('grito5.wav',  f_a, N(s))
+
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*1. # uma volta
+aa=10.**(10/20.) # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-25.)/20.)+aa*n.sin(kk*i)
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito6.wav',  f_a, N(s))
+
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*2. # uma volta
+aa=10.**(10/20.) # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-25.)/20.)+aa*n.sin(kk*i)
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito7.wav',  f_a, N(s))
+
+
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*.5 # uma volta
+aa=10.**(10/20.) # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-25.)/20.)+aa*n.sin(kk*i)
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito8.wav',  f_a, N(s))
+
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*.5 # uma volta
+aa=10.**(10/20.) # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-25.)/20.)+aa*n.cos(kk*i+n.pi)
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito9.wav',  f_a, N(s))
+
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*.5 # uma volta
+aa=10. # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*(-25.+aa*n.cos(kk*i))/20.))
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito91.wav',  f_a, N(s))
+
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*.5 # uma volta
+aa=20. # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*(-25.+aa*n.cos(kk*i))/20.))
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito92.wav',  f_a, N(s))
+
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*.5 # uma volta
+aa=40. # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*(-25.+aa*n.cos(kk*i))/20.))
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito93.wav',  f_a, N(s))
+
+
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*1.5 # uma volta
+aa=20. # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*(-25.+aa*n.cos(kk*i))/20.))
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito94.wav',  f_a, N(s))
+
+
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*1. # uma volta
+aa=20. # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*(-25.+aa*n.cos(kk*i))/20.))
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito95.wav',  f_a, N(s))
+
+
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*2. # uma volta
+aa=20. # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*(-25.+aa*n.cos(kk*i))/20.))
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+
+w.write('grito96.wav',  f_a, N(s))
+
+
+def NN(arr):
+    return 2*((arr-arr.min())/(arr.max()-arr.min()))-1
+
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[i*(-1)**i])
+    som_=adsr(som[:int(T*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala.wav',  f_a, N(H(foo)))
+
+
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[((i*2)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int(T*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala2.wav',  f_a, N(H(foo)))
+
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[((i*3)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int(T*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala3.wav',  f_a, N(H(foo)))
+
+
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[((i*4)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int(T*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala4.wav',  f_a, N(H(foo)))
+
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[((i*5)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int(T*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala5.wav',  f_a, N(H(foo)))
+
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[((i*6)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int(T*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala6.wav',  f_a, N(H(foo)))
+
+
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[((i*6)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T +i*10)*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala7.wav',  f_a, N(H(foo)))
+
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[((i*6)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -i*10)*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala8.wav',  f_a, N(H(foo)))
+
+T=150. # ms
+foo=[]
+for i in xrange(17):
+    som=NN(ss[((i*2)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -i*8)*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala9.wav',  f_a, N(H(foo)))
+
+T=150. # ms
+foo=[]
+for i in xrange(27):
+    som=NN(ss[((i*2)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -30*n.sin(i))*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala91.wav',  f_a, N(H(foo)))
+
+
+
+T=150. # ms
+foo=[]
+for i in xrange(27):
+    som=NN(ss[((i*7)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -90*n.sin(i))*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala92.wav',  f_a, N(H(foo)))
+w.write('gritoFala92b.wav',  f_a, N(H(foo)[::2]))
+
+T=150. # ms
+foo=[]
+for i in xrange(67):
+    som=NN(ss[((i*7)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -90*n.sin(i))*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala92c.wav',  f_a, N(H(foo)[::2]))
+
+T=150. # ms
+foo=[]
+for i in xrange(67):
+    som=NN(ss[((i)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -90*n.sin(i))*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala92c_.wav',  f_a, N(H(foo)[::2]))
+
+
+T=150. # ms
+foo=[]
+for i in xrange(67):
+    som=NN(ss[((i*2)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -90*n.sin(i))*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala92d.wav',  f_a, N(H(foo)[::3]))
+
+
+T=90. # ms
+foo=[]
+for i in xrange(67):
+    som=NN(ss[((i*2)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -30*n.sin(i))*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala92e.wav',  f_a, N(H(foo)))
+
+
+
+T=250. # ms
+foo=[]
+for i in xrange(27):
+    som=NN(ss[((i*3)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -190*n.sin(i*23))*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala93.wav',  f_a, N(H(foo)))
+
+T=250. # ms
+s=n.zeros(f_a*5)
+for i in xrange(17):
+    som=NN(ss[((i*3)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -190*n.sin(i*23))*f_a)/1000],S=-1.,R=2.,D=2.)
+    bar=n.random.randint(0,len(s)-len(som_))
+    s[bar:bar+len(som_)]+=som_
+w.write('gritoFala94.wav',  f_a, N(s))
+
+
+T=250. # ms
+s=n.zeros(f_a*5)
+for i in xrange(27):
+    som=NN(ss[((i*3)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -190*n.sin(i*23))*f_a)/1000],S=-1.,R=2.,D=2.)
+    bar=n.random.randint(0,len(s)-len(som_))
+    s[bar:bar+len(som_)]+=som_
+w.write('gritoFala95.wav',  f_a, N(s))
+
+
+T=250. # ms
+s=n.zeros(f_a*5)
+for i in xrange(47):
+    som=NN(ss[((i*3)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -190*n.sin(i*23))*f_a)/1000],S=-1.,R=2.,D=2.)
+    bar=n.random.randint(0,len(s)-len(som_))
+    s[bar:bar+len(som_)]+=som_
+w.write('gritoFala96.wav',  f_a, N(s))
+
+T=350. # ms
+s=n.zeros(f_a*5)
+for i in xrange(97):
+    som=NN(ss[((i*3)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -120*n.sin(i*23))*f_a)/1000],A=100.,S=-1.,R=2.,D=100.)
+    bar=n.random.randint(0,len(s)-len(som_))
+    s[bar:bar+len(som_)]+=som_
+w.write('gritoFala97.wav',  f_a, N(s))
+
+
+
+T=350. # ms
+s=n.zeros(f_a*5)
+CONT=97
+for i in xrange(CONT):
+    som=NN(ss[((i*3)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -120*n.sin(i*23))*f_a)/1000],A=100.,S=-1.,R=2.,D=100.)
+    bar=n.random.randint(0,len(s)-len(som_))
+    s[bar:bar+len(som_)]+=som_
+w.write('gritoFala98.wav',  f_a, N(s))
+
+
+
+########## TTM REPETE com frequencia
+
+ss=[]
+f0=220.
+s=n.zeros(4*f_a)
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-15.)/20.)
+    s+=v(f=ff,d=4.,nu=0.)
+ss.append(s)    
+w.write('grito_.wav',  f_a, N(s))
+
+f0=230.
+s=n.zeros(4*f_a)
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-5.)/20.)
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)    
+w.write('grito2_.wav',  f_a, N(s))
+
+f0=210.
+s=n.zeros(4*f_a)
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-15.)/20.)
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)    
+w.write('grito3_.wav',  f_a, N(s))
+
+f0=200.
+s=n.zeros(4*f_a)
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-25.)/20.)
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)    
+w.write('grito4_.wav',  f_a, N(s))
+
+
+f0=215.
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*1 # uma volta
+aa=10.**(10/20.)
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-25.)/20.)+aa*i
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)   
+w.write('grito5_.wav',  f_a, N(s))
+
+f0=220.*2.**(1/12.)
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*1. # uma volta
+aa=10.**(10/20.) # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-25.)/20.)+aa*n.sin(kk*i)
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito6_.wav',  f_a, N(s))
+
+f0=220.*2.**(2/12.)
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*2. # uma volta
+aa=10.**(10/20.) # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-25.)/20.)+aa*n.sin(kk*i)
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito7_.wav',  f_a, N(s))
+
+
+f0=220.*2.**(3/12.)
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*.5 # uma volta
+aa=10.**(10/20.) # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-25.)/20.)+aa*n.sin(kk*i)
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito8_.wav',  f_a, N(s))
+
+f0=220.*2.**(-3/12.)
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*.5 # uma volta
+aa=10.**(10/20.) # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*-25.)/20.)+aa*n.cos(kk*i+n.pi)
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito9_.wav',  f_a, N(s))
+
+f0=220.*2.**(-2/12.)
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*.5 # uma volta
+aa=10. # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*(-25.+aa*n.cos(kk*i))/20.))
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito91_.wav',  f_a, N(s))
+
+f0=220.*2.**(-1/12.)
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*.5 # uma volta
+aa=20. # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*(-25.+aa*n.cos(kk*i))/20.))
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito92_.wav',  f_a, N(s))
+
+f0=220.*2.**(-1.3/12.)
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*.5 # uma volta
+aa=40. # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*(-25.+aa*n.cos(kk*i))/20.))
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito93_.wav',  f_a, N(s))
+
+f0=220.*2.**(-2.3/12.)
+
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*1.5 # uma volta
+aa=20. # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*(-25.+aa*n.cos(kk*i))/20.))
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito94_.wav',  f_a, N(s))
+
+
+f0=220.*2.**(2.3/12.)
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*1. # uma volta
+aa=20. # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*(-25.+aa*n.cos(kk*i))/20.))
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+w.write('grito95_.wav',  f_a, N(s))
+
+
+f0=220.*2.**(1.3/12.)
+s=n.zeros(4*f_a)
+kk=(2*n.pi/10)*2. # uma volta
+aa=20. # 10. dB
+for i in xrange(10): # 10 harmonicas
+    ff=f0*(1+i)
+    n_oitavas=n.log2(ff/f0)
+    a_=10.**((n_oitavas*(-25.+aa*n.cos(kk*i))/20.))
+    s+=v(f=ff,d=4.,nu=0.)*a_
+ss.append(s)
+
+w.write('grito96_.wav',  f_a, N(s))
+
+
+def NN(arr):
+    return 2*((arr-arr.min())/(arr.max()-arr.min()))-1
+
+f0=220.*2.**(.3/12.)
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[i*(-1)**i])
+    som_=adsr(som[:int(T*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala_.wav',  f_a, N(H(foo)))
+
+f0=220.*2.**(-.3/12.)
+
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[((i*2)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int(T*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala2_.wav',  f_a, N(H(foo)))
+
+f0=220.*2.**(-.5/12.)
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[((i*3)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int(T*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala3_.wav',  f_a, N(H(foo)))
+
+
+f0=220.*2.**(-.15/12.)
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[((i*4)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int(T*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala4_.wav',  f_a, N(H(foo)))
+
+f0=220.*2.**(-.25/12.)
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[((i*5)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int(T*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala5_.wav',  f_a, N(H(foo)))
+
+f0=220.*2.**(-.75/12.)
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[((i*6)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int(T*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala6_.wav',  f_a, N(H(foo)))
+
+
+f0=220.*2.**(-1.75/12.)
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[((i*6)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T +i*10)*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala7_.wav',  f_a, N(H(foo)))
+
+f0=220.*2.**(-2.75/12.)
+T=150. # ms
+foo=[]
+for i in xrange(10):
+    som=NN(ss[((i*6)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -i*10)*f_a)/1000],S=-3.,R=10.)
+    foo.append(som_)
+w.write('gritoFala8_.wav',  f_a, N(H(foo)))
+
+f0=220.*2.**(2.75/12.)
+T=150. # ms
+foo=[]
+for i in xrange(17):
+    som=NN(ss[((i*2)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -i*8)*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala9_.wav',  f_a, N(H(foo)))
+
+f0=220.*2.**(1.75/12.)
+T=150. # ms
+foo=[]
+for i in xrange(27):
+    som=NN(ss[((i*2)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -30*n.sin(i))*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala91_.wav',  f_a, N(H(foo)))
+
+f0=220.*2.**(2.75/12.)
+T=150. # ms
+foo=[]
+for i in xrange(27):
+    som=NN(ss[((i*7)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -90*n.sin(i))*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala92_.wav',  f_a, N(H(foo)))
+w.write('gritoFala92b_.wav',  f_a, N(H(foo)[::2]))
+
+f0=220.*2.**(0/12.)
+T=150. # ms
+foo=[]
+for i in xrange(67):
+    som=NN(ss[((i*7)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -90*n.sin(i))*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala92c_.wav',  f_a, N(H(foo)[::2]))
+
+f0=220.*2.**(0.7/12.)
+T=150. # ms
+foo=[]
+for i in xrange(67):
+    som=NN(ss[((i)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -90*n.sin(i))*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala92c__.wav',  f_a, N(H(foo)[::2]))
+
+
+f0=220.*2.**(1.7/12.)
+T=150. # ms
+foo=[]
+for i in xrange(67):
+    som=NN(ss[((i*2)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -90*n.sin(i))*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala92d_.wav',  f_a, N(H(foo)[::3]))
+
+
+f0=220.*2.**(2.7/12.)
+T=90. # ms
+foo=[]
+for i in xrange(67):
+    som=NN(ss[((i*2)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -30*n.sin(i))*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala92e_.wav',  f_a, N(H(foo)))
+
+
+
+f0=220.*2.**(-2.7/12.)
+T=250. # ms
+foo=[]
+for i in xrange(27):
+    som=NN(ss[((i*3)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -190*n.sin(i*23))*f_a)/1000],S=-1.,R=2.,D=2.)
+    foo.append(som_)
+w.write('gritoFala93_.wav',  f_a, N(H(foo)))
+
+f0=220.*2.**(-1.7/12.)
+T=250. # ms
+s=n.zeros(f_a*5)
+for i in xrange(17):
+    som=NN(ss[((i*3)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -190*n.sin(i*23))*f_a)/1000],S=-1.,R=2.,D=2.)
+    bar=n.random.randint(0,len(s)-len(som_))
+    s[bar:bar+len(som_)]+=som_
+w.write('gritoFala94_.wav',  f_a, N(s))
+
+
+f0=220.*2.**(-.7/12.)
+T=250. # ms
+s=n.zeros(f_a*5)
+for i in xrange(27):
+    som=NN(ss[((i*3)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -190*n.sin(i*23))*f_a)/1000],S=-1.,R=2.,D=2.)
+    bar=n.random.randint(0,len(s)-len(som_))
+    s[bar:bar+len(som_)]+=som_
+w.write('gritoFala95_.wav',  f_a, N(s))
+
+
+f0=220.*2.**(-.5/12.)
+T=250. # ms
+s=n.zeros(f_a*5)
+for i in xrange(47):
+    som=NN(ss[((i*3)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -190*n.sin(i*23))*f_a)/1000],S=-1.,R=2.,D=2.)
+    bar=n.random.randint(0,len(s)-len(som_))
+    s[bar:bar+len(som_)]+=som_
+w.write('gritoFala96_.wav',  f_a, N(s))
+
+f0=220.*2.**(.5/12.)
+T=350. # ms
+s=n.zeros(f_a*5)
+for i in xrange(97):
+    som=NN(ss[((i*3)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -120*n.sin(i*23))*f_a)/1000],A=100.,S=-1.,R=2.,D=100.)
+    bar=n.random.randint(0,len(s)-len(som_))
+    s[bar:bar+len(som_)]+=som_
+w.write('gritoFala97_.wav',  f_a, N(s))
+
+
+
+f0=220.*2.**(1.5/12.)
+T=350. # ms
+s=n.zeros(f_a*5)
+CONT=97
+for i in xrange(CONT):
+    som=NN(ss[((i*3)%len(ss)) *(-1)**i])
+    som_=adsr(som[:int((T -120*n.sin(i*23))*f_a)/1000],A=100.,S=-1.,R=2.,D=100.)
+    bar=n.random.randint(0,len(s)-len(som_))
+    s[bar:bar+len(som_)]+=som_
+w.write('gritoFala98_.wav',  f_a, N(s))
+
+
+
+w.write('arroto.wav',  f_a, N(r__*A(d=len(r__)/float(f_a),fa=15.)))
+
+
+w.write('arroto2.wav',  f_a, N(r__*A(d=len(r__)/float(f_a),fa=15.,V_dB=20.)))
+
+
+w.write('arroto3.wav',  f_a, N(r__*A(d=len(r__)/float(f_a),fa=25.,V_dB=50.)))
+
+
+w.write('arroto4.wav',  f_a, N(r__*A(d=len(r__)/float(f_a),fa=25.,V_dB=50.,taba=D_i)))
+
+
+w.write('arroto5.wav',  f_a, N(v(110,d=len(r__)/float(f_a))+  r__*A(d=len(r__)/float(f_a),fa=15.)))
+
+
+w.write('arroto6.wav',  f_a, N(H((
+                         adsr(r__[:int(f_a*0.040)],R=10.),
+                         adsr(r__[:int(f_a*0.040)],R=10.),
+                         adsr(r__[:int(f_a*0.040)],R=10.),
+                         adsr(r__[:int(f_a*0.040)],R=10.),
+                         adsr(r__[:int(f_a*0.040)],R=10.),
+                         adsr(r__[:int(f_a*0.040)],R=10.),
+                         adsr(r__[:int(f_a*0.040)],R=10.),
+                      ))))
+
+w.write('arroto7.wav',  f_a, N(H((
+                         adsr(r__[:int(f_a*0.040)],A=3.,R=10.),
+                         adsr(r__[:int(f_a*0.040)],A=3.,R=10.),
+                         adsr(r__[:int(f_a*0.040)],A=3.,R=10.),
+                         adsr(r__[:int(f_a*0.040)],A=3.,R=10.),
+                         adsr(r__[:int(f_a*0.040)],A=3.,R=10.),
+                         adsr(r__[:int(f_a*0.040)],A=3.,R=10.),
+                         adsr(r__[:int(f_a*0.040)],A=3.,R=10.),
+                      ))))
+
+w.write('arroto8.wav',  f_a, N(H((
+                         adsr(r__[:int(f_a*0.040)],A=3.,S=-3.,R=10.),
+                         adsr(r__[:int(f_a*0.040)],A=3.,S=-3.,R=10.),
+                         adsr(r__[:int(f_a*0.040)],A=3.,S=-3.,R=10.),
+                         adsr(r__[:int(f_a*0.040)],A=3.,S=-3.,R=10.),
+                         adsr(r__[:int(f_a*0.040)],A=3.,S=-3.,R=10.),
+                         adsr(r__[:int(f_a*0.040)],A=3.,S=-3.,R=10.),
+                         adsr(r__[:int(f_a*0.040)],A=3.,S=-3.,R=10.),
+                      ))))
+
+
+fator = 10.**(-10/20.)
+alphai = fator**(n.log2(fi[i0:]/f0))
+c = n.copy(coefs)
+c[i0:] = c[i0:]*alphai
+
+# real par, imaginaria impar
+c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
+    n.imag(c[1:Lambda/2])[::-1]
+
+# realizando amostras temporais do ruído marrom
+ruido = n.fft.ifft(c)
+r = n.real(ruido)
+r = ((r-r.min())/(r.max()-r.min()))*2-1
+rp=r
+r = n.int16(r * float(2**15-1))
+w.write('preto.wav', f_a, r)
+
+
+w.write('arroto9.wav',  f_a, N(H((
+                         adsr(rp[:int(f_a*0.040)],A=3.,S=-3.,R=10.),
+                         adsr(rp[:int(f_a*0.040)],A=3.,S=-3.,R=10.),
+                         adsr(rp[:int(f_a*0.040)],A=3.,S=-3.,R=10.),
+                         adsr(rp[:int(f_a*0.040)],A=3.,S=-3.,R=10.),
+                         adsr(rp[:int(f_a*0.040)],A=3.,S=-3.,R=10.),
+                         adsr(rp[:int(f_a*0.040)],A=3.,S=-3.,R=10.),
+                         adsr(rp[:int(f_a*0.040)],A=3.,S=-3.,R=10.),
+                      ))))
+
+
+w.write('arroto91.wav',  f_a, N(H((
+                         adsr(rp[:int(f_a*0.040)],A=3.,D=2.,S=-3.,R=1.),
+                         adsr(rp[:int(f_a*0.040)],A=3.,D=2.,S=-3.,R=1.),
+                         adsr(rp[:int(f_a*0.040)],A=3.,D=2.,S=-3.,R=1.),
+                         adsr(rp[:int(f_a*0.040)],A=3.,D=2.,S=-3.,R=1.),
+                         adsr(rp[:int(f_a*0.040)],A=3.,D=2.,S=-3.,R=1.),
+                         adsr(rp[:int(f_a*0.040)],A=3.,D=2.,S=-3.,R=1.),
+                         adsr(rp[:int(f_a*0.040)],A=3.,D=2.,S=-3.,R=1.),
+                      ))))
+
+w.write('arroto92.wav',  f_a, N(H((
+                         adsr(rp[:int(f_a*0.040)],A=.3,D=.2,S=-3.,R=.1),
+                         adsr(rp[:int(f_a*0.040)],A=.3,D=.2,S=-3.,R=.1),
+                         adsr(rp[:int(f_a*0.040)],A=.3,D=.2,S=-3.,R=.1),
+                         adsr(rp[:int(f_a*0.040)],A=.3,D=.2,S=-3.,R=.1),
+                         adsr(rp[:int(f_a*0.040)],A=.3,D=.2,S=-3.,R=.1),
+                         adsr(rp[:int(f_a*0.040)],A=.3,D=.2,S=-3.,R=.1),
+                         adsr(rp[:int(f_a*0.040)],A=.3,D=.2,S=-3.,R=.1),
+                      ))))
 
 
 
