@@ -307,3 +307,219 @@ t2=H((
 
 
 w.write('musica1.wav', f_a, N(H((t1,t1,t1))+t2))
+
+
+A=0
+B=4
+C=7
+f0=440.
+f1=110.
+AA=0
+BB=4
+CC=7
+
+
+t1=H((
+           adsr(v(f=f0*(2.**(A/12.))  ,fv=0., nu=0.,  d=.5, tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(B/12.)),fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=5. ,A=5., D=40.),
+           adsr(v(f=f0*(2.**(C/12.))  ,fv=0., nu=0.,  d=.5, tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+
+           adsr(v(f=f0*(2.**(B/12.))  ,fv=0., nu=0.,  d=.5, tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(A/12.)) ,fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(C/12.)),fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=5. ,A=5., D=40.),
+
+           adsr(v(f=f0*(2.**(B/12.))  ,fv=0., nu=0.,  d=.5, tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(C/12.)) ,fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(A/12.)),fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=5. ,A=5., D=40.),
+
+           adsr(v(f=f0*(2.**(C/12.))  ,fv=0., nu=0.,  d=.5, tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(B/12.)) ,fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(A/12.)),fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=5. ,A=5., D=40.),
+
+           adsr(v(f=f0*(2.**(C/12.))  ,fv=0., nu=0.,  d=.5, tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(A/12.)) ,fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(B/12.)),fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=5. ,A=5., D=40.),
+
+           adsr(v(f=f0*(2.**(A/12.))  ,fv=0., nu=0.,  d=.5, tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(C/12.)) ,fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(B/12.)),fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=5. ,A=5., D=40.),
+))
+
+t2=H((
+           adsr(v(f=f1*(2.**(AA/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f1*(2.**(BB/12.)), fv=8., nu=0.2,  d=1.5, tab=Q_i), S=-9.,R=5. ,A=5., D=40.),
+           adsr(v(f=f1*(2.**(CC/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+
+           adsr(v(f=f1*(2.**(BB/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f1*(2.**(AA/12.)), fv=8., nu=0.2,  d=1.5, tab=Q_i), S=-9.,R=5. ,A=5., D=40.),
+           adsr(v(f=f1*(2.**(CC/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+
+           ## novo cf1
+           adsr(v(f=f1*(2.**(BB/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f1*(2.**(CC/12.)), fv=8., nu=0.2,  d=1.5, tab=Q_i), S=-9.,R=5. ,A=5., D=40.),
+           adsr(v(f=f1*(2.**(AA/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+
+           adsr(v(f=f1*(2.**(CC/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f1*(2.**(BB/12.)), fv=8., nu=0.2,  d=1.5, tab=Q_i), S=-9.,R=5. ,A=5., D=40.),
+           adsr(v(f=f1*(2.**(AA/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+
+           ## novo cf1
+           adsr(v(f=f1*(2.**(CC/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f1*(2.**(AA/12.)), fv=8., nu=0.2,  d=1.5, tab=Q_i), S=-9.,R=5. ,A=5., D=40.),
+           adsr(v(f=f1*(2.**(BB/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+
+           adsr(v(f=f1*(2.**(AA/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f1*(2.**(CC/12.)), fv=8., nu=0.2,  d=1.5, tab=Q_i), S=-9.,R=5. ,A=5., D=40.),
+           adsr(v(f=f1*(2.**(BB/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+))
+
+
+w.write('musica2.wav', f_a, N(H((t1,t1,t1))+t2))
+
+
+
+
+
+A=2
+B=-1
+C=7
+f0=440.
+f1=110.
+AA=2
+BB=-1
+CC=7
+
+
+t1_=H((
+           adsr(v(f=f0*(2.**(A/12.))  ,fv=0., nu=0.,  d=.5, tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(B/12.)),fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=5. ,A=5., D=40.),
+           adsr(v(f=f0*(2.**(C/12.))  ,fv=0., nu=0.,  d=.5, tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+
+           adsr(v(f=f0*(2.**(B/12.))  ,fv=0., nu=0.,  d=.5, tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(A/12.)) ,fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(C/12.)),fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=5. ,A=5., D=40.),
+
+           adsr(v(f=f0*(2.**(B/12.))  ,fv=0., nu=0.,  d=.5, tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(C/12.)) ,fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(A/12.)),fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=5. ,A=5., D=40.),
+
+           adsr(v(f=f0*(2.**(C/12.))  ,fv=0., nu=0.,  d=.5, tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(B/12.)) ,fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(A/12.)),fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=5. ,A=5., D=40.),
+
+           adsr(v(f=f0*(2.**(C/12.))  ,fv=0., nu=0.,  d=.5, tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(A/12.)) ,fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(B/12.)),fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=5. ,A=5., D=40.),
+
+           adsr(v(f=f0*(2.**(A/12.))  ,fv=0., nu=0.,  d=.5, tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(C/12.)) ,fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f0*(2.**(B/12.)),fv=0., nu=0.,  d=.5,  tab=Tr_i), S=-9.,R=5. ,A=5., D=40.),
+))
+
+t2_=H((
+           adsr(v(f=f1*(2.**(AA/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f1*(2.**(BB/12.)), fv=8., nu=0.2,  d=1.5, tab=Q_i), S=-9.,R=5. ,A=5., D=40.),
+           adsr(v(f=f1*(2.**(CC/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+
+           adsr(v(f=f1*(2.**(BB/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f1*(2.**(AA/12.)), fv=8., nu=0.2,  d=1.5, tab=Q_i), S=-9.,R=5. ,A=5., D=40.),
+           adsr(v(f=f1*(2.**(CC/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+
+           ## novo cf1
+           adsr(v(f=f1*(2.**(BB/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f1*(2.**(CC/12.)), fv=8., nu=0.2,  d=1.5, tab=Q_i), S=-9.,R=5. ,A=5., D=40.),
+           adsr(v(f=f1*(2.**(AA/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+
+           adsr(v(f=f1*(2.**(CC/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f1*(2.**(BB/12.)), fv=8., nu=0.2,  d=1.5, tab=Q_i), S=-9.,R=5. ,A=5., D=40.),
+           adsr(v(f=f1*(2.**(AA/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+
+           ## novo cf1
+           adsr(v(f=f1*(2.**(CC/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f1*(2.**(AA/12.)), fv=8., nu=0.2,  d=1.5, tab=Q_i), S=-9.,R=5. ,A=5., D=40.),
+           adsr(v(f=f1*(2.**(BB/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+
+           adsr(v(f=f1*(2.**(AA/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+           adsr(v(f=f1*(2.**(CC/12.)), fv=8., nu=0.2,  d=1.5, tab=Q_i), S=-9.,R=5. ,A=5., D=40.),
+           adsr(v(f=f1*(2.**(BB/12.))  ,fv=8., nu=0.2, d=1.5, tab=Q_i), S=-9.,R=10.,A=5., D=40.),
+))
+
+def Z(tam): return n.zeros(int(tam))
+#w.write('musica3.wav', f_a, N(H((t1,t1,t1))+t2))
+pack=H((t1,t1,t1))+t2
+pack_=H((t1_,t1_,t1_))+t2_
+
+c1=Z(f_a)
+T=int(f_a*0.2)
+c1[:T]=rb[:T]
+
+c2=Z(f_a)
+T=int(f_a*0.2)
+T2=int(f_a*0.5)
+c2[:T]+=rb[:T]
+c2[T2:T2+T]+=ra[:T]
+
+T_=int(f_a*0.1)
+T3=int(f_a*(0.5+0.5/4))
+c2[T3:T3+T_]+=rv[:T_]
+T3=int(f_a*(0.5+0.5/2))
+c2[T3:T3+T_]+=rv[:T_]
+T3=int(f_a*(0.5+(3*0.5)/4))
+c2[T3:T3+T_]+=rv[:T_]
+
+c3=c2
+
+c4=H((c2,c2,c2,c2,
+      c2,c2,c2,c2))*3.+pack[::3][:8*f_a]
+
+
+
+w.write('musica3.wav', f_a, N(H((c1,c2,c3,c4)))) 
+#w.write('musica3.wav', f_a, N(H((
+#                              H((rv[:int(f_a*.2)],n.zeros(int(f_a*0.8))),
+#                              H((rv[:int(f_a*.2)],n.zeros(int(f_a*0.8)))+H((n.zeros(int(f_a*0.5)),rv[:int(f_a*.2)],n.zeros(f_a*0.3))),
+#                                ))))))
+#
+
+
+
+
+c1=Z(f_a)
+T=int(f_a*0.2)
+c1[:T]=rm[:T]
+
+c2=Z(f_a)
+T=int(f_a*0.2)
+T2=int(f_a*0.5)
+c2[:T]+=rm[:T]
+c2[T2:T2+T]+=rr[:T]
+
+T_=int(f_a*0.1)
+T3=int(f_a*(0.5+0.5/4))
+c2[T3:T3+T_]+=rb[:T_]*.1
+T3=int(f_a*(0.5+0.5/2))
+c2[T3:T3+T_]+=rb[:T_]*.1
+T3=int(f_a*(0.5+(3*0.5)/4))
+c2[T3:T3+T_]+=rb[:T_]*.1
+
+c3=c2
+
+c4=H((
+      c1,c1,c1,c2,
+      c1,c1,c1,c2,
+      c1,c1+c2,c1,c2,
+      c1,c1,c1,c2))*3.+H((
+                           pack[::3][:8*f_a], pack_[::3][:4*f_a],pack[::3][-4*f_a:]))
+
+
+
+w.write('musica4.wav', f_a, N(H((c1,c3,c4)))) 
+#w.write('musica3.wav', f_a, N(H((
+#                              H((rv[:int(f_a*.2)],n.zeros(int(f_a*0.8))),
+#                              H((rv[:int(f_a*.2)],n.zeros(int(f_a*0.8)))+H((n.zeros(int(f_a*0.5)),rv[:int(f_a*.2)],n.zeros(f_a*0.3))),
+#                                ))))))
+#
+
+
+
+
